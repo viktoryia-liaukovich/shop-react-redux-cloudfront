@@ -2,6 +2,7 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import axios from "axios";
+import { getImportToken } from "~/utils/utils";
 
 type CSVFileImportProps = {
   url: string;
@@ -37,6 +38,9 @@ export default function CSVFileImport({ url, title }: CSVFileImportProps) {
       url,
       params: {
         fileName: encodeURIComponent(file.name),
+      },
+      headers: {
+        Authorization: `Basic ${getImportToken()}`,
       },
     });
 
